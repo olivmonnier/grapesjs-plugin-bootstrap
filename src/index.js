@@ -5,17 +5,17 @@ import loadLayoutBlocks from './layout';
 export default grapesjs.plugins.add('grapesjs-plugin-bootstrap', (editor, opts = {}) => {
   const options = { ...{
     // default options
-    blocks: ['container', 'columns-2', 'columns-3', 'columns-4', 'columns-4-8', 'columns-8-4'],
+    blocks: ['container', 'columns-2', 'columns-3', 'columns-4', 'columns-4-8', 'columns-8-4', 'well'],
     addBasicStyle: true
   },  ...opts };
 
   if (options.addBasicStyle) {
     editor.addComponents(`
       <style>
-        .container, .row {
+        .container, .row, .well {
           padding: 10px;
         }
-        .container, .row, .cell {
+        .container, .row, .cell, .well {
           min-height: 50px;
         }
       </style>

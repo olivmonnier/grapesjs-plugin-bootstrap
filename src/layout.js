@@ -2,7 +2,6 @@ import constants from './constants';
 const { category } = constants;
 
 export default (editor, config = {}) => {
-  console.log(category)
   const bm = editor.BlockManager;
   const { layout } = category;
   const { blocks } = config;
@@ -79,4 +78,13 @@ export default (editor, config = {}) => {
       </div>
     `
   });
+
+  // Well
+  addBlock('well', {
+    label: 'Well',
+    category: layout,
+    content: `
+      <div class="well"></div>
+    `
+  })
 }
