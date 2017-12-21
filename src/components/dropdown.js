@@ -7,12 +7,7 @@ export default (editor, config = {}) => {
   domc.addType('dropdown', {
     model: defaultModel.extend({
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
-        'curstom-name': 'Dropdown',
-        traits: [{
-          type: 'list-items',
-          label: 'Items',
-          name: 'items'
-        }]
+        'custom-name': 'Dropdown'
       })
     }, {
         isComponent(el) {
@@ -21,14 +16,26 @@ export default (editor, config = {}) => {
           }
         }
     }),
-    view: defaultView.extend({
-      render: function() {
-        const traits = this.model.get('traits');
+    view: defaultView
+  })
 
-        defaultView.prototype.render.apply(this, arguments);
-
-        return this;
-      }
-    })
+  domc.addType('dropdown-menu', {
+    model: defaultModel.extend({
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        'custom-name': 'DropdownMenu',
+        traits: [{
+          type: 'list-items',
+          label: 'Items',
+          name: 'items'
+        }]
+      })
+    }, {
+        isComponent(el) {
+          if (el && el.classList && el.classList.contains('dropdown-menu')) {
+            return { type: 'dropdown-menu' }
+          }
+        }
+    }),
+    view: defaultView
   })
 }

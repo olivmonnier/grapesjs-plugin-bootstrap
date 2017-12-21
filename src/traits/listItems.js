@@ -7,6 +7,16 @@ export default function(editor, config = {}) {
     },
 
     onValueChange: function() {
+      const itemsStr = this.model.get('value').trim();
+      const items = itemsStr.split('\n');
+      const itemsComps = items.map(itemStr => ({
+        tagName: "li",
+        attributes: {},
+        content: itemStr
+      }));
+      const comps = this.target.get('components');
+
+      comps.reset(itemsComps);
       this.target.view.render();
     },
 
