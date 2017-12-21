@@ -14,8 +14,7 @@ export default (editor, config = {}) => {
           label: 'Context',
           name: 'context',
           options: contextList.map(val => 
-            ({ value: `panel-${val}`, name: val })),
-          changeProp: 1
+            ({ value: `panel-${val}`, name: val }))
         }]
       })
     }, {

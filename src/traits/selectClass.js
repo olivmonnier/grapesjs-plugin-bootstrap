@@ -30,6 +30,7 @@ export default function(editor, config = {}) {
     getInputEl: function() {
       if (!this.$input) {
         const model = this.model;
+        const target = this.target;
         const opts = model.get('options') || [];
         this.$input = document.createElement('select');
 
@@ -44,15 +45,11 @@ export default function(editor, config = {}) {
           })
         }
 
-        let val = model.get('value');
-        const target = this.target;
+        let val = model.get('value');        
         const name = model.get('name');
 
         if (model.get('changeProp')) {
           val = val || target.get(name);
-        } else {
-          const attrs = target.get('attributes');
-          val = attrs[name];
         }
 
         if (val) {

@@ -4,6 +4,21 @@ export default (editor, config = {}) => {
   const { basic } = category;
   const addBlock = (name = '', attr = {}) => (blocks.indexOf(name) >= 0) ? bm.add(name, attr) : null;
 
+  // Dropdown
+  addBlock('dropdown', {
+    label: 'Dropdown',
+    category: basic,
+    content: `
+      <div class="dropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span>Dropdown</span>
+          &nbsp;
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu"></ul>
+      </div>
+    `
+  })
   // Panel
   addBlock('panel', {
     label: 'Panel',
