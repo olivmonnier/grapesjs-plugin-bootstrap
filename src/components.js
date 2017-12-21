@@ -10,22 +10,37 @@ export default (editor, config = {}) => {
         'custom-name': 'Well',
         traits: [{
           type: 'select',
-          label: 'Well size',
-          name: 'well-size',
+          label: 'Size',
+          name: 'size',
           options: [
-            { value: 'well ', name: 'default' },
-            { value: 'well well-sm', name: 'small' },
-            { value: 'well well-lg', name: 'Large' }
-          ]
+            { value: '', name: 'default' },
+            { value: 'well-sm', name: 'small' },
+            { value: 'well-lg', name: 'Large' }
+          ],
+          changeProp: 1
         }],
-        changeProp: 1
       }),
       init() {
-        this.listenTo(this, 'change:well-size', this.changeSize)
+        this.listenTo(this, 'change:size', this.changeSize)
       },
       changeSize() {
-        //this.em.trigger("change:selectedComponent");
-      }
+        const size = this.get('size')
+        const classes = this.get('classes');
+        const sm = this.sm.get('SelectorManager');
+
+        const size_classes = ['well-sm', 'well-lg']
+        classes.forEach(element => {
+          if(size_classes.includes(element.id)) {
+            classes.remove(element);
+          }
+        })
+        
+        if (size && size !== '') {
+          const class_obj = sm.add(size);
+          classes.add(class_obj)
+        }
+        this.em.trigger('change:selectedComponent');
+      },
     }, {
       isComponent(el) {
         if (el && el.classList && el.classList.contains('well')) {
