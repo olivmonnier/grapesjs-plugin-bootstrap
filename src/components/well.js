@@ -1,5 +1,3 @@
-import handleTraitClassName from '../utils/handleTraitClassName';
-
 export default (editor, config = {}) => {
   const domc = editor.DomComponents;
   const defaultType = domc.getType('default');
@@ -11,7 +9,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
         'custom-name': 'Well',
         traits: [{
-          type: 'select',
+          type: 'select-class',
           label: 'Size',
           name: 'size',
           options: [
@@ -21,10 +19,7 @@ export default (editor, config = {}) => {
           ],
           changeProp: 1
         }],
-      }),
-      init() {
-        this.listenTo(this, 'change:size', handleTraitClassName.bind(this, 'size', ['well-sm', 'well-lg']))
-      }
+      })
     }, {
       isComponent(el) {
         if (el && el.classList && el.classList.contains('well')) {
