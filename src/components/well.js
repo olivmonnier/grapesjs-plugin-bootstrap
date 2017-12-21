@@ -1,3 +1,5 @@
+import handleTraitClassName from '../utils/handleTraitClassName';
+
 export default (editor, config = {}) => {
   const domc = editor.DomComponents;
   const defaultType = domc.getType('default');
@@ -21,26 +23,8 @@ export default (editor, config = {}) => {
         }],
       }),
       init() {
-        this.listenTo(this, 'change:size', this.changeSize)
-      },
-      changeSize() {
-        const size = this.get('size')
-        const classes = this.get('classes');
-        const sm = this.sm.get('SelectorManager');
-
-        const size_classes = ['well-sm', 'well-lg']
-        classes.forEach(element => {
-          if(size_classes.includes(element.id)) {
-            classes.remove(element);
-          }
-        })
-        
-        if (size && size !== '') {
-          const class_obj = sm.add(size);
-          classes.add(class_obj)
-        }
-        this.em.trigger('change:selectedComponent');
-      },
+        this.listenTo(this, 'change:size', handleTraitClassName.bind(this, 'size', ['well-sm', 'well-lg']))
+      }
     }, {
       isComponent(el) {
         if (el && el.classList && el.classList.contains('well')) {
