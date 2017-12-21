@@ -15,7 +15,7 @@ export default (editor, config = {}) => {
           options: [
             { value: '', name: 'default' },
             { value: 'well-sm', name: 'small' },
-            { value: 'well-lg', name: 'Large' }
+            { value: 'well-lg', name: 'large' }
           ],
           changeProp: 1
         }],

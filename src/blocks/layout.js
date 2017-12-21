@@ -1,10 +1,7 @@
-import constants from './constants';
-const { category } = constants;
-
 export default (editor, config = {}) => {
   const bm = editor.BlockManager;
+  const { blocks, category } = config;
   const { layout } = category;
-  const { blocks } = config;
   const addBlock = (name = '', attr = {}) => (blocks.indexOf(name) >= 0) ? bm.add(name, attr) : null;
 
   // Container
@@ -78,13 +75,4 @@ export default (editor, config = {}) => {
       </div>
     `
   });
-
-  // Well
-  addBlock('well', {
-    label: 'Well',
-    category: layout,
-    content: `
-      <div class="well"></div>
-    `
-  })
 }
