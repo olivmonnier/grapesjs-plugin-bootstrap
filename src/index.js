@@ -10,10 +10,7 @@ export default grapesjs.plugins.add('grapesjs-plugin-bootstrap', (editor, opts =
   if (options.addBasicStyle) {
     editor.addComponents(`
       <style>
-        .container, .row {
-          padding: 10px 0;
-        }
-        .container, .row, .cell {
+        .container, .row, .row > [class*="col-"] {
           min-height: 50px;
         }
       </style>

@@ -1,13 +1,13 @@
 export default (editor, config = {}) => {
   const bm = editor.BlockManager;
   const { blocks, category } = config;
-  const { basic } = category;
+  const { components } = category;
   const addBlock = (name = '', attr = {}) => (blocks.indexOf(name) >= 0) ? bm.add(name, attr) : null;
 
   // Dropdown
   addBlock('dropdown', {
     label: 'Dropdown',
-    category: basic,
+    category: components,
     content: `
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -22,7 +22,7 @@ export default (editor, config = {}) => {
   // Panel
   addBlock('panel', {
     label: 'Panel',
-    category: basic,
+    category: components,
     content: `
       <div class="panel panel-default">
         <div class="panel-heading" data-gjs-draggable=".panel" data-gjs-custom-name="PanelHeading">
@@ -40,7 +40,7 @@ export default (editor, config = {}) => {
   // Well
   addBlock('well', {
     label: 'Well',
-    category: basic,
+    category: components,
     content: `
       <div class="well">
         <p>Content</p>

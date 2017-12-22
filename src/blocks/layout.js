@@ -18,9 +18,9 @@ export default (editor, config = {}) => {
     label: '2 Columns',
     category: layout,
     content: `
-      <div class="row" data-gjs-droppable=".cell" data-gjs-custom-name="Row">
-        <div class="cell col-md-6" data-gjs-draggable=".row" data-gjs-custom-name="Cell"></div>
-        <div class="cell col-md-6" data-gjs-draggable=".row" data-gjs-custom-name="Cell"></div>
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6"></div>
       </div>
     `
   })
@@ -30,10 +30,10 @@ export default (editor, config = {}) => {
     label: '3 Columns',
     category: layout,
     content: `
-      <div class="row" data-gjs-droppable=".cell" data-gjs-custom-name="Row">
-        <div class="cell col-md-4" data-gjs-draggable=".row" data-gjs-custom-name="Cell"></div>
-        <div class="cell col-md-4" data-gjs-draggable=".row" data-gjs-custom-name="Cell"></div>
-        <div class="cell col-md-4" data-gjs-draggable=".row" data-gjs-custom-name="Cell"></div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4"></div>
       </div>
     `
   })
@@ -43,11 +43,11 @@ export default (editor, config = {}) => {
     label: '4 Columns',
     category: layout,
     content: `
-      <div class="row" data-gjs-droppable=".cell" data-gjs-custom-name="Row">
-        <div class="cell col-md-3" data-gjs-draggable=".row" data-gjs-custom-name="Cell"></div>
-        <div class="cell col-md-3" data-gjs-draggable=".row" data-gjs-custom-name="Cell"></div>
-        <div class="cell col-md-3" data-gjs-draggable=".row" data-gjs-custom-name="Cell"></div>
-        <div class="cell col-md-3" data-gjs-draggable=".row" data-gjs-custom-name="Cell"></div>
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
+        <div class="col-md-3"></div>
       </div>
     `
   })
@@ -57,9 +57,9 @@ export default (editor, config = {}) => {
     label: "2 Columns 4/8",
     category: layout,
     content: `
-      <div class="row" data-gjs-droppable=".cell" data-gjs-custom-name="Row">
-        <div class="cell col-md-4" data-gjs-draggable=".row" data-gjs-custom-name="Cell"></div>
-        <div class="cell col-md-8" data-gjs-draggable=".row" data-gjs-custom-name="Cell"></div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8"></div>
       </div>
     `
   });
@@ -69,9 +69,9 @@ export default (editor, config = {}) => {
     label: "2 Columns 8/4",
     category: layout,
     content: `
-      <div class="row" data-gjs-droppable=".cell" data-gjs-custom-name="Row">
-        <div class="cell col-md-8" data-gjs-draggable=".row" data-gjs-custom-name="Cell"></div>
-        <div class="cell col-md-4" data-gjs-draggable=".row" data-gjs-custom-name="Cell"></div>
+      <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4"></div>
       </div>
     `
   });

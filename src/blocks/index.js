@@ -1,7 +1,7 @@
-import basic from './basic';
+import components from './components';
 import layout from './layout';
 
 export default (editor, config = {}) => {
-  basic(editor, config);
+  components(editor, config);
   layout(editor, config);
 }
