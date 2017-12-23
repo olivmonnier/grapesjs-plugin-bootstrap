@@ -30,7 +30,7 @@ export default (editor, config = {}) => {
       })
     }, {
       isComponent(el) {
-        if (el && el.className && el.className.match(/col-(xs|sm|md|lg)/)) {
+        if (el && el.className && el.className.match(/col-(xs|sm|md|lg)-\d+/)) {
           return { type: "column" };
         }
       }

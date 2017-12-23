@@ -13,6 +13,15 @@ export default (editor, config = {}) => {
     `
   })
 
+  // Column
+  addBlock('column', {
+    label: 'Column',
+    category: layout,
+    content: `
+      <div class="col-md-12"></div>
+    `
+  })
+
   // Columns 2
   addBlock('columns-2', {
     label: '2 Columns',
