@@ -19,6 +19,7 @@ export default (editor, config = {}) => {
       </div>
     `
   })
+  
   // Panel
   addBlock('panel', {
     label: 'Panel',
@@ -37,6 +38,7 @@ export default (editor, config = {}) => {
       </div>
     `
   })
+
   // Well
   addBlock('well', {
     label: 'Well',

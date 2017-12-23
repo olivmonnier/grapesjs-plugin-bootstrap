@@ -7,7 +7,9 @@ export default (editor, config = {}) => {
   domc.addType('row', {
     model: defaultModel.extend({
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
-        'custom-name': 'Row'
+        'custom-name': 'Row',
+        droppable: ':not(.row)',
+        draggable: ':not(.row)'
       })
     }, {
       isComponent(el) {
@@ -20,20 +22,19 @@ export default (editor, config = {}) => {
   })
 
   domc.addType("column", {
-    model: defaultModel.extend(
-      {
-        defaults: Object.assign({}, defaultModel.prototype.defaults, {
-          "custom-name": "Column"
-        })
-      },
-      {
-        isComponent(el) {
-          if (el && el.className && el.className.match(/col-(xs|sm|md|lg)/)) {
-            return { type: "column" };
-          }
+    model: defaultModel.extend({
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        "custom-name": "Column",
+        droppable: ':not([class*="col-"])',
+        draggable: '.row'
+      })
+    }, {
+      isComponent(el) {
+        if (el && el.className && el.className.match(/col-(xs|sm|md|lg)/)) {
+          return { type: "column" };
         }
       }
-    ),
+    }),
     view: defaultView
   });
 }

@@ -75,4 +75,11 @@ export default (editor, config = {}) => {
       </div>
     `
   });
+
+  // Row
+  addBlock("row", {
+    label: "Row",
+    category: layout,
+    content: '<div class="row"></div>'
+  });
 }
