@@ -5,9 +5,10 @@ export default (editor, config = {}) => {
   const addBlock = (name = '', attr = {}) => (blocks.indexOf(name) >= 0) ? bm.add(name, attr) : null;
 
   // Dropdown
-  addBlock('dropdown', {
-    label: 'Dropdown',
+  addBlock("dropdown", {
+    label: "Dropdown",
     category: components,
+    attributes: { class: "fa fa-caret-square-o-down" },
     content: `
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -21,12 +22,13 @@ export default (editor, config = {}) => {
         </ul>
       </div>
     `
-  })
+  });
   
   // Panel
   addBlock('panel', {
     label: 'Panel',
     category: components,
+    attributes: { class: 'fa fa-window-maximize' },
     content: `
       <div class="panel panel-default">
         <div class="panel-heading" data-gjs-draggable=".panel" data-gjs-custom-name="PanelHeading">

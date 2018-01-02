@@ -8,6 +8,7 @@ export default (editor, config = {}) => {
   addBlock('container', {
     label: 'Container',
     category: layout,
+    attributes: { class: 'fa fa-square-o' },
     content: {
       type: 'container',
       classes: ['container']
@@ -18,6 +19,7 @@ export default (editor, config = {}) => {
   addBlock("row", {
     label: "Row",
     category: layout,
+    attributes: { class: 'fa fa-minus' },
     content: {
       type: 'row',
       classes: ['row']
@@ -28,6 +30,7 @@ export default (editor, config = {}) => {
   addBlock("column", {
     label: "Column",
     category: layout,
+    attributes: { class: 'fa fa-columns' },
     content: {
       type: "column",
       classes: ["col-md-12"]
@@ -35,21 +38,23 @@ export default (editor, config = {}) => {
   });
 
   // Columns 2
-  addBlock('columns-2', {
-    label: '2 Columns',
+  addBlock("columns-2", {
+    label: "2 Columns",
     category: layout,
+    attributes: { class: "fa fa-columns" },
     content: `
       <div class="row">
         <div class="col-md-6"></div>
         <div class="col-md-6"></div>
       </div>
     `
-  })
+  });
 
   // Columns 3
-  addBlock('columns-3', {
-    label: '3 Columns',
+  addBlock("columns-3", {
+    label: "3 Columns",
     category: layout,
+    attributes: { class: "fa fa-columns" },
     content: `
       <div class="row">
         <div class="col-md-4"></div>
@@ -57,12 +62,13 @@ export default (editor, config = {}) => {
         <div class="col-md-4"></div>
       </div>
     `
-  })
+  });
 
   // Columns 4
-  addBlock('columns-4', {
-    label: '4 Columns',
+  addBlock("columns-4", {
+    label: "4 Columns",
     category: layout,
+    attributes: { class: "fa fa-columns" },
     content: `
       <div class="row">
         <div class="col-md-3"></div>
@@ -71,12 +77,13 @@ export default (editor, config = {}) => {
         <div class="col-md-3"></div>
       </div>
     `
-  })
+  });
 
   // Columns 4/8
   addBlock("columns-4-8", {
     label: "2 Columns 4/8",
     category: layout,
+    attributes: { class: "fa fa-columns" },
     content: `
       <div class="row">
         <div class="col-md-4"></div>
@@ -89,6 +96,7 @@ export default (editor, config = {}) => {
   addBlock("columns-8-4", {
     label: "2 Columns 8/4",
     category: layout,
+    attributes: { class: "fa fa-columns" },
     content: `
       <div class="row">
         <div class="col-md-8"></div>

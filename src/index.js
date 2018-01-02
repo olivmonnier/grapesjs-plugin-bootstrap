@@ -2,6 +2,7 @@ import grapesjs from 'grapesjs';
 import constants from './constants';
 import loadComponents from './components';
 import loadBlocks from './blocks';
+import loadDevices from './devices';
 import loadTraits from './traits';
 
 export default grapesjs.plugins.add('grapesjs-plugin-bootstrap', (editor, opts = {}) => {
@@ -28,4 +29,7 @@ export default grapesjs.plugins.add('grapesjs-plugin-bootstrap', (editor, opts =
 
   // Add blocks
   loadBlocks(editor, options);
+
+  // Add devices
+  loadDevices(editor, options);
 });
