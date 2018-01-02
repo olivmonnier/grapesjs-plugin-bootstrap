@@ -8,19 +8,31 @@ export default (editor, config = {}) => {
   addBlock('container', {
     label: 'Container',
     category: layout,
-    content: `
-      <div class="container" data-gjs-custom-name="Container"></div>
-    `
+    content: {
+      type: 'container',
+      classes: ['container']
+    }
   })
 
-  // Column
-  addBlock('column', {
-    label: 'Column',
+  // Row
+  addBlock("row", {
+    label: "Row",
     category: layout,
-    content: `
-      <div class="col-md-12"></div>
-    `
-  })
+    content: {
+      type: 'row',
+      classes: ['row']
+    }
+  });
+
+  // Column
+  addBlock("column", {
+    label: "Column",
+    category: layout,
+    content: {
+      type: "column",
+      classes: ["col-md-12"]
+    }
+  });
 
   // Columns 2
   addBlock('columns-2', {
@@ -83,12 +95,5 @@ export default (editor, config = {}) => {
         <div class="col-md-4"></div>
       </div>
     `
-  });
-
-  // Row
-  addBlock("row", {
-    label: "Row",
-    category: layout,
-    content: '<div class="row"></div>'
   });
 }

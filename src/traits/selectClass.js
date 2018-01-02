@@ -30,26 +30,30 @@ export default function(editor, config = {}) {
 
     getInputEl: function() {
       if (!this.inputEl) {
-        let md = this.model;
-        let opts = md.get("options") || [];
-        let input = document.createElement("select");
-        let target = this.target;
-        let target_view_el = this.target.view.el;
-        for (let i = 0; i < opts.length; i++) {
-          let name = opts[i].name;
-          let value = opts[i].value;
+        const model = this.model;
+        const options = model.get("options") || [];
+        const input = document.createElement("select");
+        const target = this.target;
+        const target_view_el = this.target.view.el;
+
+        for (let i = 0; i < options.length; i++) {
+          let name = options[i].name;
+          let value = options[i].value;
+
           if (value == "") {
             value = "GJS_NO_CLASS";
-          } // 'GJS_NO_CLASS' represents no class--empty string does not trigger value change
-          let option = document.createElement("option");
+          } 
+
+          const option = document.createElement("option");
           option.text = name;
           option.value = value;
-          const value_a = value.split(" ");
+
           if(target_view_el.classList.contains(value)) {
             option.setAttribute("selected", "selected");
           }
           input.append(option);
         }
+
         this.inputEl = input;
       }
       return this.inputEl;
