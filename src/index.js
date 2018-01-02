@@ -10,11 +10,14 @@ export default grapesjs.plugins.add('grapesjs-plugin-bootstrap', (editor, opts =
   if (options.addBasicStyle) {
     editor.addComponents(`
       <style>
-        .container, .container-fluid, .row, .row > [class*="col-"] {
+        .gjs-dashed .container, .gjs-dashed .container-fluid, .gjs-dashed .row, .gjs-dashed .row > [class*="col-"], .gjs-dashed .dropdown-menu {
           min-height: 50px;
         }
+        .gjs-dashed .dropdown-menu {
+          display: block;
+        }
       </style>
-    `)
+    `);
   }
 
   // Add components

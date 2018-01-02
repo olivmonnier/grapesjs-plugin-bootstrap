@@ -11,11 +11,14 @@ export default (editor, config = {}) => {
     content: `
       <div class="dropdown">
         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <span>Dropdown</span>
-          &nbsp;
+          <span> Dropdown </span>
           <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu"></ul>
+        <ul class="dropdown-menu">
+          <li><a href="#">Item 1</a></li>
+          <li><a href="#">Item 2</a></li>
+          <li><a href="#">Item 3</a></li>
+        </ul>
       </div>
     `
   })
