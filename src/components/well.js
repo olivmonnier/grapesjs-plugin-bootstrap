@@ -13,9 +13,9 @@ export default (editor, config = {}) => {
           label: 'Size',
           name: 'size',
           options: [
-            { value: '', name: 'default' },
-            { value: 'well-sm', name: 'small' },
-            { value: 'well-lg', name: 'large' }
+            { value: '', name: 'Default' },
+            { value: 'well-sm', name: 'Small' },
+            { value: 'well-lg', name: 'Large' }
           ]
         }])
       })

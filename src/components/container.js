@@ -15,8 +15,8 @@ export default (editor, config = {}) => {
             type: 'select-class',
             label: 'Type',
             options: [
-              { value: 'container', name: 'fixed' },
-              { value: 'container-fluid', name: 'fluid' }
+              { value: 'container', name: 'Fixed' },
+              { value: 'container-fluid', name: 'Fluid' }
             ]
           }
         ])

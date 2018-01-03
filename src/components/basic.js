@@ -1,17 +1,15 @@
+import { capitalize, getModel, getView } from "../utils";
+
 export default (editor, config = {}) => {
-  const domc = editor.DomComponents; 
-  let defaultType = domc.getType("default");
-  let defaultModel = defaultType.model;
-  let defaultView = defaultType.view;
-  let textType = domc.getType('text');
-  let textModel = textType.model;
-  let textView = textType.view;
-  let imgType = domc.getType('image');
-  let imgModel = imgType.model;
-  let imgView = imgType.view;
-  let linkType = domc.getType('link');
-  let linkModel = linkType.model;
-  let linkView = linkType.view;
+  const domc = editor.DomComponents;
+  let defaultModel = getModel(editor, 'default');
+  let defaultView = getView(editor, 'default');
+  let textModel = getModel(editor, 'text');
+  let textView = getView(editor, 'text');
+  let imgModel = getModel(editor, 'image');
+  let imgView = getView(editor, 'image');
+  let linkModel = getModel(editor, 'link');
+  let linkView = getView(editor, 'link');
 
   const contexts = ["primary", "success", "info", "warning", "danger"];
   const alignments = ["left", "center", "right", "justify"];
@@ -27,17 +25,17 @@ export default (editor, config = {}) => {
             type: 'select-class',
             label: 'Float',
             options: [
-              { value: '', name: 'none' },
-              { value: 'pull-left', name: 'left' },
-              { value: 'pull-right', name: 'right' }
+              { value: '', name: 'None' },
+              { value: 'pull-left', name: 'Left' },
+              { value: 'pull-right', name: 'Right' }
             ]
           },
           {
             type: "select-class",
             label: "Color",
             options: [
-              { value: '', name: 'none' },
-              ... ["muted"].concat(contexts).map(context => ({ value: `text-${context}`, name: context })) 
+              { value: '', name: 'None' },
+              ... ["muted"].concat(contexts).map(context => ({ value: `text-${context}`, name: capitalize(context) })) 
             ]
           },
           {
@@ -45,7 +43,7 @@ export default (editor, config = {}) => {
             label: "Background",
             options: [
               { value: '', name: 'none' },
-              ... contexts.map(context => ({ value: `bg-${context}`, name: context })) 
+              ... contexts.map(context => ({ value: `bg-${context}`, name: capitalize(context) })) 
             ]
           }
         ])
@@ -53,9 +51,9 @@ export default (editor, config = {}) => {
     }),
     view: defaultView
   })
-  defaultType = domc.getType('default');
-  defaultModel = defaultType.model;
-  defaultView = defaultType.view;
+
+  defaultModel = getModel(editor, 'default');
+  defaultView = getView(editor, 'default');
 
   domc.addType('image', {
     model: defaultModel.extend({
@@ -81,8 +79,8 @@ export default (editor, config = {}) => {
             type: 'select-class',
             label: 'Responsive',
             options: [
-              { value: '', name: 'no' },
-              { value: 'img-responsive', name: 'yes' }
+              { value: '', name: 'No' },
+              { value: 'img-responsive', name: 'Yes' }
             ]
           },
           {
@@ -90,7 +88,7 @@ export default (editor, config = {}) => {
             label: 'Shape',
             options: [
               { value: '', name: 'none' },
-              ... imgShapes.map(shape => ({ value: `img-${shape}`, name: shape }))
+              ... imgShapes.map(shape => ({ value: `img-${shape}`, name: capitalize(shape) }))
             ]
           }
         ])
@@ -113,16 +111,16 @@ export default (editor, config = {}) => {
             type: "select-class",
             label: "Alignment",
             options: [
-              ... alignments.map(align => ({ value: `text-${align}`, name: align })),
-              { value: "text-nowrap", name: "no wrap" }
+              ... alignments.map(align => ({ value: `text-${align}`, name: capitalize(align) })),
+              { value: "text-nowrap", name: "No wrap" }
             ]
           },
           {
             type: "select-class",
             label: "Transform",
             options: [
-              { value: "", name: "none" },
-              ... textStyles.map(style => ({ value: `text-${style}`, name: style }))
+              { value: "", name: "None" },
+              ... textStyles.map(style => ({ value: `text-${style}`, name: capitalize(style) }))
             ]
           }
         ])
@@ -130,9 +128,9 @@ export default (editor, config = {}) => {
     }),
     view: textView
   });
-  textType = domc.getType('text');
-  textModel = textType.model;
-  textView = textType.view;
+
+  textModel = getModel(editor, 'text');
+  textView = getView(editor, 'text');
 
   domc.addType("header", {
     model: textModel.extend(
@@ -188,10 +186,10 @@ export default (editor, config = {}) => {
             label: 'Toggles',
             name: 'data-toggle',
             options: [
-              {value: '', name: 'none'},
-              {value: 'button', name: 'self'},
-              {value: 'collapse', name: 'collapse'},
-              {value: 'dropdown', name: 'dropdown'}
+              {value: '', name: 'None'},
+              {value: 'button', name: 'Self'},
+              {value: 'collapse', name: 'Collapse'},
+              {value: 'dropdown', name: 'Dropdown'}
             ],
             changeProp: 1
           }
@@ -212,8 +210,8 @@ export default (editor, config = {}) => {
             label: 'Type',
             name: 'tagName',
             options: [
-              { value: 'ul', name: 'unordered' },
-              { value: 'ol', name: 'ordered' }
+              { value: 'ul', name: 'Unordered' },
+              { value: 'ol', name: 'Ordered' }
             ],
             changeProp: 1
           },
@@ -222,8 +220,8 @@ export default (editor, config = {}) => {
             label: 'Style',
             options: [
               { value: '', name: 'none' },
-              { value: 'list-unstyled', name: 'unstyled' },
-              { value: 'list-inline', name: 'inline' },
+              { value: 'list-unstyled', name: 'Unstyled' },
+              { value: 'list-inline', name: 'Inline' },
             ]
           }
         ])
@@ -267,8 +265,8 @@ export default (editor, config = {}) => {
             type: 'select-class',
             label: 'Lead',
             options: [
-              { value: '', name: 'no' },
-              { value: 'lead', name: 'yes'}
+              { value: '', name: 'No' },
+              { value: 'lead', name: 'Yes'}
             ]
           }
         ])

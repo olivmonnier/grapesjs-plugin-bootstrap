@@ -1,3 +1,5 @@
+import { capitalize } from '../utils';
+
 export default (editor, config = {}) => {
   const domc = editor.DomComponents;
   const defaultType = domc.getType("default");
@@ -18,7 +20,7 @@ export default (editor, config = {}) => {
           label: 'Context',
           name: 'context',
           options: contextList.map(val => 
-            ({ value: `panel-${val}`, name: val }))
+            ({ value: `panel-${val}`, name: capitalize(val) }))
         }])
       })
     }, {

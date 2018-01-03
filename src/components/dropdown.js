@@ -61,8 +61,8 @@ export default (editor, config = {}) => {
             label: 'Type',
             name: 'tagName',
             options: [
-              { value: 'button', name: 'button' },
-              { value: 'a', name: 'link' }
+              { value: 'button', name: 'Button' },
+              { value: 'a', name: 'Link' }
             ],
             changeProp: 1
           }
