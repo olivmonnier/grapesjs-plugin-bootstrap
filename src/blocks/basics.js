@@ -24,6 +24,16 @@ export default (editor, config = {}) => {
     }
   });
 
+  addBlock('link', {
+    label: 'Link',
+    category: basics,
+    attributes: { class: 'fa fa-link' },
+    content: {
+      type: 'link',
+      content: 'Link'
+    }
+  });
+
   addBlock("list", {
     label: "List",
     category: basics,

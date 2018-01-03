@@ -9,6 +9,9 @@ export default (editor, config = {}) => {
   let imgType = domc.getType('image');
   let imgModel = imgType.model;
   let imgView = imgType.view;
+  let linkType = domc.getType('link');
+  let linkModel = linkType.model;
+  let linkView = linkType.view;
 
   const contexts = ["primary", "success", "info", "warning", "danger"];
   const alignments = ["left", "center", "right", "justify"];
@@ -27,22 +30,6 @@ export default (editor, config = {}) => {
               { value: '', name: 'none' },
               { value: 'pull-left', name: 'left' },
               { value: 'pull-right', name: 'right' }
-            ]
-          },
-          {
-            type: 'select-class',
-            label: 'Centered',
-            options: [
-              { value: '', name: 'no' },
-              { value: 'center-block', name: 'yes' }
-            ]
-          },
-          {
-            type: 'select-class',
-            label: 'Hidden',
-            options: [
-              { value: '', name: 'none' },
-              ... viewports.map(viewport => ({ value: `hidden-${viewport}`, name: viewport }))
             ]
           },
           {
@@ -132,7 +119,7 @@ export default (editor, config = {}) => {
           },
           {
             type: "select-class",
-            label: "Text",
+            label: "Transform",
             options: [
               { value: "", name: "none" },
               ... textStyles.map(style => ({ value: `text-${style}`, name: style }))
@@ -185,6 +172,34 @@ export default (editor, config = {}) => {
     ),
     view: textView
   });
+
+  domc.addType('link', {
+    model: linkModel.extend({
+      defaults: Object.assign({}, linkModel.prototype.defaults, {
+        traits: [
+          {
+            type: 'text',
+            name: 'id',
+            label: 'Id',
+            placeholder: 'eg. Text here'
+          }].concat(linkModel.prototype.defaults.traits, [
+          { 
+            type: 'select',
+            label: 'Toggles',
+            name: 'data-toggle',
+            options: [
+              {value: '', name: 'none'},
+              {value: 'button', name: 'self'},
+              {value: 'collapse', name: 'collapse'},
+              {value: 'dropdown', name: 'dropdown'}
+            ],
+            changeProp: 1
+          }
+        ])
+      })
+    }),
+    view: linkView
+  })
 
   domc.addType('list', {
     model: defaultModel.extend({

@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-plugin-bootstrap",
-  "version": "0.1.293",
+  "version": "0.1.309",
   "description": "GrapesJS Plugin Bootstrap",
   "main": "dist/grapesjs-plugin-bootstrap.min.js",
   "scripts": {
