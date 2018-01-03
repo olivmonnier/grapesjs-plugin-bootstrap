@@ -31,13 +31,13 @@ export default (editor, config = {}) => {
     attributes: { class: 'fa fa-window-maximize' },
     content: `
       <div class="panel panel-default">
-        <div class="panel-heading" data-gjs-draggable=".panel" data-gjs-custom-name="PanelHeading">
+        <div class="panel-heading">
           <h3 class="panel-title">Heading</h3>
         </div>
-        <div class="panel-body" data-gjs-draggable=".panel" data-gjs-custom-name="PanelBody">
+        <div class="panel-body">
           <p>Content</p>
         </div>
-        <div class="panel-footer" data-gjs-draggable=".panel" data-gjs-custom-name="PanelFooter">
+        <div class="panel-footer">
           <p>Footer</p>
         </div>
       </div>
@@ -48,6 +48,7 @@ export default (editor, config = {}) => {
   addBlock('well', {
     label: 'Well',
     category: components,
+    attributes: { class: 'fa fa-square' },
     content: `
       <div class="well">
         <p>Content</p>

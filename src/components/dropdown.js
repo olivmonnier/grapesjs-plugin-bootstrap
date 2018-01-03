@@ -42,6 +42,11 @@ export default (editor, config = {}) => {
               { value: 'a', name: 'link' }
             ],
             changeProp: 1
+          },
+          {
+            type: 'checkbox',
+            name: 'aria-haspopup',
+            label: 'Popup'        
           }
         ]
       }),
@@ -49,15 +54,19 @@ export default (editor, config = {}) => {
         this.listenTo(this, 'change:tagName', this.changeTag)
       },
       changeTag(el) {
-        const attr = this.attributes;
-        const { traits } = attr;
+        const attrs = this.get('attributes');
+        const traits = this.get("traits");
 
-        traits.models = traits.models.filter(model => model.attributes.name === 'tagName');
+        traits.models = traits.models.filter(model => model.get('name') === "tagName");
 
-        if (attr.tagName === 'a') {
+        if (this.get('tagName') === 'a') {
           traits.add(linkModel.prototype.defaults.traits)
+        } else {
+          if (attrs.href) delete attrs.href;
         }
-        this.sm.trigger("change:selectedComponent");
+
+        this.set('attributes', Object.assign({}, attrs));
+        this.sm.trigger("change:selectedComponent");       
       }
     }, {
       isComponent(el) {

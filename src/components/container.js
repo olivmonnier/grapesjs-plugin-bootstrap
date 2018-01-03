@@ -10,7 +10,7 @@ export default (editor, config = {}) => {
         'custom-name': 'Container',
         tagName: 'div',
         droppable: true,
-        traits: [
+        traits: defaultModel.prototype.defaults.traits.concat([
           {
             type: 'select-class',
             label: 'Type',
@@ -19,7 +19,7 @@ export default (editor, config = {}) => {
               { value: 'container-fluid', name: 'fluid' }
             ]
           }
-        ]
+        ])
       })
     }, {
       isComponent(el) {

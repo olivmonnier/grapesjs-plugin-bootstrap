@@ -8,7 +8,7 @@ export default (editor, config = {}) => {
     model: defaultModel.extend({
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
         'custom-name': 'Well',
-        traits: [{
+        traits: defaultModel.prototype.defaults.traits.concat([{
           type: 'select-class',
           label: 'Size',
           name: 'size',
@@ -17,7 +17,7 @@ export default (editor, config = {}) => {
             { value: 'well-sm', name: 'small' },
             { value: 'well-lg', name: 'large' }
           ]
-        }],
+        }])
       })
     }, {
       isComponent(el) {

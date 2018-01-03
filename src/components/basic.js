@@ -1,5 +1,5 @@
 export default (editor, config = {}) => {
-  const domc = editor.DomComponents;
+  const domc = editor.DomComponents; 
   let defaultType = domc.getType("default");
   let defaultModel = defaultType.model;
   let defaultView = defaultType.view;
@@ -10,18 +10,100 @@ export default (editor, config = {}) => {
   let imgModel = imgType.model;
   let imgView = imgType.view;
 
+  const contexts = ["primary", "success", "info", "warning", "danger"];
+  const alignments = ["left", "center", "right", "justify"];
+  const textStyles = ["lowercase", "uppercase", "capitalize"];
+  const imgShapes = ["rounded", "circle", "thumbnail"];
+  const viewports = ['xs', 'sm', 'md', 'lg'];
+
+  domc.addType('default', {
+    model: defaultModel.extend({
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        traits: defaultModel.prototype.defaults.traits.concat([
+          {
+            type: 'select-class',
+            label: 'Float',
+            options: [
+              { value: '', name: 'none' },
+              { value: 'pull-left', name: 'left' },
+              { value: 'pull-right', name: 'right' }
+            ]
+          },
+          {
+            type: 'select-class',
+            label: 'Centered',
+            options: [
+              { value: '', name: 'no' },
+              { value: 'center-block', name: 'yes' }
+            ]
+          },
+          {
+            type: 'select-class',
+            label: 'Hidden',
+            options: [
+              { value: '', name: 'none' },
+              ... viewports.map(viewport => ({ value: `hidden-${viewport}`, name: viewport }))
+            ]
+          },
+          {
+            type: "select-class",
+            label: "Color",
+            options: [
+              { value: '', name: 'none' },
+              ... ["muted"].concat(contexts).map(context => ({ value: `text-${context}`, name: context })) 
+            ]
+          },
+          {
+            type: "select-class",
+            label: "Background",
+            options: [
+              { value: '', name: 'none' },
+              ... contexts.map(context => ({ value: `bg-${context}`, name: context })) 
+            ]
+          }
+        ])
+      })
+    }),
+    view: defaultView
+  })
+  defaultType = domc.getType('default');
+  defaultModel = defaultType.model;
+  defaultView = defaultType.view;
+
   domc.addType('image', {
-    model: imgModel.extend({
+    model: defaultModel.extend({
       defaults: Object.assign({}, imgModel.prototype.defaults, {
         'custom-name': 'Image',
-        droppable: true,
-        traits: imgModel.prototype.defaults.traits.concat([
+        tagName: 'img',
+        resizable: 1,
+        attributes: {
+          src: 'https://dummyimage.com/450x250/999/222'
+        },
+        traits: defaultModel.prototype.defaults.traits.concat([
+          {
+            type: 'text',
+            label: 'Source (URL)',
+            name: 'src'
+          },
+          {
+            type: 'text',
+            label: 'Alternate text',
+            name: 'alt'
+          },
           {
             type: 'select-class',
             label: 'Responsive',
             options: [
               { value: '', name: 'no' },
               { value: 'img-responsive', name: 'yes' }
+            ]
+          },
+          {
+            type: 'select-class',
+            label: 'Shape',
+            options: [
+              { value: '', name: 'none' },
+              ... imgShapes.map(shape => ({ value: `img-${shape}`, name: shape }))
             ]
           }
         ])
@@ -37,17 +119,14 @@ export default (editor, config = {}) => {
   })
 
   domc.addType("text", {
-    model: textModel.extend({
+    model: defaultModel.extend({
       defaults: Object.assign({}, textModel.prototype.defaults, {
-        traits: [
+        traits: defaultModel.prototype.defaults.traits.concat([
           {
             type: "select-class",
             label: "Alignment",
             options: [
-              { value: "text-left", name: "left" },
-              { value: "text-center", name: "center" },
-              { value: "text-right", name: "right" },
-              { value: "text-justify", name: "justify" },
+              ... alignments.map(align => ({ value: `text-${align}`, name: align })),
               { value: "text-nowrap", name: "no wrap" }
             ]
           },
@@ -56,12 +135,10 @@ export default (editor, config = {}) => {
             label: "Text",
             options: [
               { value: "", name: "none" },
-              { value: "text-lowercase", name: "lowercase" },
-              { value: "text-uppercase", name: "uppercase" },
-              { value: "text-capitalize", name: "capitalize" }
+              ... textStyles.map(style => ({ value: `text-${style}`, name: style }))
             ]
           }
-        ]
+        ])
       })
     }),
     view: textView
@@ -114,7 +191,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
         'custom-name': 'List',
         droppable: true,
-        traits: [
+        traits: defaultModel.prototype.defaults.traits.concat([
           {
             type: 'select',
             label: 'Type',
@@ -134,7 +211,7 @@ export default (editor, config = {}) => {
               { value: 'list-inline', name: 'inline' },
             ]
           }
-        ]
+        ])
       })
     }, {
       isComponent(el) {

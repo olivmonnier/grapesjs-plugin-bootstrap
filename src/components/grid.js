@@ -11,7 +11,7 @@ export default (editor, config = {}) => {
         'custom-name': 'Row',
         tagName: 'div',
         draggable: '.container, .container-fluid',
-        droppable: true
+        droppable: '[class*="col-xs"], [class*="col-sm"], [class*="col-md"], [class*="col-lg"]'
       })
     }, {
       isComponent(el) {
@@ -29,7 +29,7 @@ export default (editor, config = {}) => {
         "custom-name": "Column",
         draggable: '.row',
         droppable: true,
-        traits: [{
+        traits: defaultModel.prototype.defaults.traits.concat([{
           type: 'select-class',
           options: [
             {value: '', name: 'none'},
@@ -85,7 +85,7 @@ export default (editor, config = {}) => {
             ... cols.map((i) => ({ value: `col-lg-offset-${i}`, name: `${i}/12` }))
           ],
           label: 'LG offset'
-        }],  
+        }])
       })
     }, {
       isComponent(el) {
