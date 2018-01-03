@@ -1,53 +1,14 @@
 export default (editor, config = {}) => {
   const domc = editor.DomComponents;
-  const defaultType = domc.getType("default");
-  const defaultModel = defaultType.model;
-  const defaultView = defaultType.view;
-  const textType = domc.getType('text');
-  const textModel = textType.model;
-  const textView = textType.view;
-  const imgType = domc.getType('image');
-  const imgModel = imgType.model;
-  const imgView = imgType.view;
-
-  domc.addType("header", {
-    model: textModel.extend(
-      {
-        defaults: Object.assign({}, textModel.prototype.defaults, {
-          "custom-name": "Header",
-          tagName: "h1",
-          traits: [
-            {
-              type: "select",
-              options: [
-                { value: "h1", name: "One (largest)" },
-                { value: "h2", name: "Two" },
-                { value: "h3", name: "Three" },
-                { value: "h4", name: "Four" },
-                { value: "h5", name: "Five" },
-                { value: "h6", name: "Six (smallest)" }
-              ],
-              label: "Size",
-              name: "tagName",
-              changeProp: 1
-            }
-          ]
-        })
-      },
-      {
-        isComponent(el) {
-          if (
-            el &&
-            el.tagName &&
-            ["H1", "H2", "H3", "H4", "H5", "H6"].includes(el.tagName)
-          ) {
-            return { type: "header" };
-          }
-        }
-      }
-    ),
-    view: textView
-  })
+  let defaultType = domc.getType("default");
+  let defaultModel = defaultType.model;
+  let defaultView = defaultType.view;
+  let textType = domc.getType('text');
+  let textModel = textType.model;
+  let textView = textType.view;
+  let imgType = domc.getType('image');
+  let imgModel = imgType.model;
+  let imgView = imgType.view;
 
   domc.addType('image', {
     model: imgModel.extend({
@@ -74,6 +35,79 @@ export default (editor, config = {}) => {
     }),
     view: imgView
   })
+
+  domc.addType("text", {
+    model: textModel.extend({
+      defaults: Object.assign({}, textModel.prototype.defaults, {
+        traits: [
+          {
+            type: "select-class",
+            label: "Alignment",
+            options: [
+              { value: "text-left", name: "left" },
+              { value: "text-center", name: "center" },
+              { value: "text-right", name: "right" },
+              { value: "text-justify", name: "justify" },
+              { value: "text-nowrap", name: "no wrap" }
+            ]
+          },
+          {
+            type: "select-class",
+            label: "Text",
+            options: [
+              { value: "", name: "none" },
+              { value: "text-lowercase", name: "lowercase" },
+              { value: "text-uppercase", name: "uppercase" },
+              { value: "text-capitalize", name: "capitalize" }
+            ]
+          }
+        ]
+      })
+    }),
+    view: textView
+  });
+  textType = domc.getType('text');
+  textModel = textType.model;
+  textView = textType.view;
+
+  domc.addType("header", {
+    model: textModel.extend(
+      {
+        defaults: Object.assign({}, textModel.prototype.defaults, {
+          "custom-name": "Header",
+          tagName: "h1",
+          traits: textModel.prototype.defaults.traits.concat([
+            {
+              type: "select",
+              options: [
+                { value: "h1", name: "One (largest)" },
+                { value: "h2", name: "Two" },
+                { value: "h3", name: "Three" },
+                { value: "h4", name: "Four" },
+                { value: "h5", name: "Five" },
+                { value: "h6", name: "Six (smallest)" }
+              ],
+              label: "Size",
+              name: "tagName",
+              changeProp: 1
+            }
+          ])
+        })
+      },
+      {
+        isComponent(el) {
+          if (
+            el &&
+            el.tagName &&
+            ["H1", "H2", "H3", "H4", "H5", "H6"].includes(el.tagName)
+          ) {
+            return { type: "header" };
+          }
+        }
+      }
+    ),
+    view: textView
+  });
 
   domc.addType('list', {
     model: defaultModel.extend({
@@ -118,8 +152,7 @@ export default (editor, config = {}) => {
         'custom-name': 'Item',
         tagName: 'li',
         draggable: 'ul, ol',
-        droppable: true,
-        editable: true
+        droppable: true
       })
     }, {
       isComponent(el) {
@@ -137,30 +170,16 @@ export default (editor, config = {}) => {
         'custom-name': 'Paragraph',
         tagName: 'p',
         droppable: true,
-        editable: true,
-        traits: [
+        traits: textModel.prototype.defaults.traits.concat([
           {
             type: 'select-class',
-            label: 'Alignment',
+            label: 'Lead',
             options: [
-              { value: 'text-left', name: 'left' },
-              { value: 'text-center', name: 'center' },
-              { value: 'text-right', name: 'right' },
-              { value: 'text-justify', name: 'justify' },
-              { value: 'text-nowrap', name: 'no wrap' }
-            ]
-          },
-          {
-            type: 'select-class',
-            label: 'Transformation',
-            options: [
-              { value: '', name: 'none' },
-              { value: 'text-lowercase', name: 'lowercase' },
-              { value: 'text-uppercase', name: 'uppercase' },
-              { value: 'text-capitalize', name: 'capitalize' }
+              { value: '', name: 'no' },
+              { value: 'lead', name: 'yes'}
             ]
           }
-        ]
+        ])
       })
     }, {
       isComponent(el) {

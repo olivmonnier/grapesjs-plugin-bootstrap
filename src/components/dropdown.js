@@ -32,7 +32,6 @@ export default (editor, config = {}) => {
         'custom-name': 'Dropdown Toggle',
         draggable: '.dropdown',
         droppable: true,
-        editable: true,
         traits: [
           {
             type: 'select',
