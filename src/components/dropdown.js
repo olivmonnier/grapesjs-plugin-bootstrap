@@ -1,17 +1,16 @@
 export default (editor, config = {}) => {
-  const domc = editor.DomComponents;
-  const defaultType = domc.getType("default");
-  const defaultModel = defaultType.model;
-  const defaultView = defaultType.view;
-  const textType = domc.getType('text');
-  const textModel = textType.model;
-  const textView = textType.view;
-  const linkType = domc.getType('link');
-  const linkModel = linkType.model;
-  const linkView = linkType.view;
-  const listItemType = domc.getType('list-item');
-  const listItemModel = listItemType.model;
-  const listItemView = listItemType.view;
+  const domc = editor.DomComponents
+  const defaultType = domc.getType('default')
+  const defaultModel = defaultType.model
+  const defaultView = defaultType.view
+  const textType = domc.getType('text')
+  const textModel = textType.model
+  const textView = textType.view
+  const linkType = domc.getType('link')
+  const linkModel = linkType.model
+  const listItemType = domc.getType('list-item')
+  const listItemModel = listItemType.model
+  const listItemView = listItemType.view
 
   domc.addType('dropdown', {
     model: defaultModel.extend({
@@ -30,11 +29,11 @@ export default (editor, config = {}) => {
         ])
       })
     }, {
-        isComponent(el) {
-          if (el && el.classList && el.classList.contains('dropdown')) {
-            return { type: 'dropdown' }
-          }
+      isComponent (el) {
+        if (el && el.classList && el.classList.contains('dropdown')) {
+          return { type: 'dropdown' }
         }
+      }
     }),
     view: defaultView
   })
@@ -49,7 +48,7 @@ export default (editor, config = {}) => {
           {
             type: 'checkbox',
             name: 'aria-haspopup',
-            label: 'Popup'        
+            label: 'Popup'
           },
           {
             type: 'checkbox',
@@ -68,27 +67,27 @@ export default (editor, config = {}) => {
           }
         ]
       }),
-      init() {
+      init () {
         this.listenTo(this, 'change:tagName', this.changeTag)
       },
-      changeTag(el) {
-        const attrs = this.get('attributes');
-        const traits = this.get("traits");
-        const traitsToKeep = ['tagName', 'aria-haspopup', 'aria-expanded'];
+      changeTag (el) {
+        const attrs = this.get('attributes')
+        const traits = this.get('traits')
+        const traitsToKeep = ['tagName', 'aria-haspopup', 'aria-expanded']
 
-        traits.models = traits.models.filter(model => traitsToKeep.indexOf(model.get("name")) >= 0 );
+        traits.models = traits.models.filter(model => traitsToKeep.indexOf(model.get('name')) >= 0)
 
         if (this.get('tagName') === 'a') {
           traits.add(linkModel.prototype.defaults.traits)
         } else {
-          if (attrs.href) delete attrs.href;
+          if (attrs.href) delete attrs.href
         }
 
-        this.set('attributes', Object.assign({}, attrs));
-        this.sm.trigger("change:selectedComponent");       
+        this.set('attributes', Object.assign({}, attrs))
+        this.sm.trigger('change:selectedComponent')
       }
     }, {
-      isComponent(el) {
+      isComponent (el) {
         if (el && el.classList && el.classList.contains('dropdown-toggle')) {
           return { type: 'dropdown-toggle' }
         }
@@ -105,11 +104,11 @@ export default (editor, config = {}) => {
         droppable: 'li'
       })
     }, {
-        isComponent(el) {
-          if (el && el.classList && el.classList.contains('dropdown-menu')) {
-            return { type: 'dropdown-menu' }
-          }
+      isComponent (el) {
+        if (el && el.classList && el.classList.contains('dropdown-menu')) {
+          return { type: 'dropdown-menu' }
         }
+      }
     }),
     view: defaultView
   })
@@ -121,8 +120,8 @@ export default (editor, config = {}) => {
         draggable: '.dropdown-menu'
       })
     }, {
-      isComponent(el) {
-        const parent = el.parentNode;
+      isComponent (el) {
+        const parent = el.parentNode
         if (parent && parent.classList && parent.classList.contains('dropdown-menu')) {
           return { type: 'dropdown-item' }
         }

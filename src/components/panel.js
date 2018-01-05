@@ -1,14 +1,14 @@
-import { capitalize } from '../utils';
+import { capitalize } from '../utils'
 
 export default (editor, config = {}) => {
-  const domc = editor.DomComponents;
-  const defaultType = domc.getType("default");
-  const defaultModel = defaultType.model;
-  const defaultView = defaultType.view; 
-  const headerType = domc.getType('header');
-  const headerModel = headerType.model;
-  const headerView = headerType.view;
-  const contextList = ['default', 'primary', 'success', 'info', 'warning', 'danger'];
+  const domc = editor.DomComponents
+  const defaultType = domc.getType('default')
+  const defaultModel = defaultType.model
+  const defaultView = defaultType.view
+  const headerType = domc.getType('header')
+  const headerModel = headerType.model
+  const headerView = headerType.view
+  const contextList = ['default', 'primary', 'success', 'info', 'warning', 'danger']
 
   domc.addType('panel', {
     model: defaultModel.extend({
@@ -19,12 +19,12 @@ export default (editor, config = {}) => {
           type: 'select-class',
           label: 'Context',
           name: 'context',
-          options: contextList.map(val => 
+          options: contextList.map(val =>
             ({ value: `panel-${val}`, name: capitalize(val) }))
         }])
       })
     }, {
-      isComponent(el) {
+      isComponent (el) {
         if (el && el.classList && el.classList.contains('panel')) {
           return { type: 'panel' }
         }
@@ -40,7 +40,7 @@ export default (editor, config = {}) => {
         draggable: '.panel'
       })
     }, {
-      isComponent(el) {
+      isComponent (el) {
         if (el && el.classList && el.classList.contains('panel-body')) {
           return { type: 'panel-body' }
         }
@@ -56,7 +56,7 @@ export default (editor, config = {}) => {
         draggable: '.panel'
       })
     }, {
-      isComponent(el) {
+      isComponent (el) {
         if (el && el.classList && el.classList.contains('panel-footer')) {
           return { type: 'panel-footer' }
         }
@@ -72,7 +72,7 @@ export default (editor, config = {}) => {
         draggable: '.panel'
       })
     }, {
-      isComponent(el) {
+      isComponent (el) {
         if (el && el.classList && el.classList.contains('panel-heading')) {
           return { type: 'panel-heading' }
         }
@@ -88,7 +88,7 @@ export default (editor, config = {}) => {
         draggable: '.panel-heading'
       })
     }, {
-      isComponent(el) {
+      isComponent (el) {
         if (el && el.classList && el.classList.contains('panel-title')) {
           return { type: 'panel-title' }
         }

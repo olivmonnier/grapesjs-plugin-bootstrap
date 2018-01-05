@@ -1,8 +1,8 @@
 export default (editor, config = {}) => {
-  const domc = editor.DomComponents;
-  const defaultType = domc.getType("default");
-  const defaultModel = defaultType.model;
-  const defaultView = defaultType.view;
+  const domc = editor.DomComponents
+  const defaultType = domc.getType('default')
+  const defaultModel = defaultType.model
+  const defaultView = defaultType.view
 
   domc.addType('container', {
     model: defaultModel.extend({
@@ -22,7 +22,7 @@ export default (editor, config = {}) => {
         ])
       })
     }, {
-      isComponent(el) {
+      isComponent (el) {
         if (el && el.classList && (el.classList.contains('container') || el.classList.contains('container-fluid'))) {
           return { type: 'container' }
         }

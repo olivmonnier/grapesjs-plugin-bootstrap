@@ -1,8 +1,8 @@
 export default (editor, config = {}) => {
-  const bm = editor.BlockManager;
-  const { blocks, category } = config;
-  const { basics } = category;
-  const addBlock = (name = '', attr = {}) => (blocks.indexOf(name) >= 0) ? bm.add(name, attr) : null;
+  const bm = editor.BlockManager
+  const { blocks, category } = config
+  const { basics } = category
+  const addBlock = (name = '', attr = {}) => (blocks.indexOf(name) >= 0) ? bm.add(name, attr) : null
 
   // Header
   addBlock('header', {
@@ -15,14 +15,14 @@ export default (editor, config = {}) => {
     }
   })
 
-  addBlock("image", {
-    label: "Image",
+  addBlock('image', {
+    label: 'Image',
     category: basics,
-    attributes: { class: "fa fa-picture-o" },
+    attributes: { class: 'fa fa-picture-o' },
     content: {
-      type: "image"
+      type: 'image'
     }
-  });
+  })
 
   addBlock('link', {
     label: 'Link',
@@ -32,12 +32,12 @@ export default (editor, config = {}) => {
       type: 'link',
       content: 'Link'
     }
-  });
+  })
 
-  addBlock("list", {
-    label: "List",
+  addBlock('list', {
+    label: 'List',
     category: basics,
-    attributes: { class: "fa fa-list" },
+    attributes: { class: 'fa fa-list' },
     content: `
       <ul>
         <li>Item 1</li>
@@ -47,14 +47,14 @@ export default (editor, config = {}) => {
     `
   })
 
-  addBlock("paragraph", {
-    label: "Paragraph",
+  addBlock('paragraph', {
+    label: 'Paragraph',
     category: basics,
-    attributes: { class: "fa fa-align-left" },
+    attributes: { class: 'fa fa-align-left' },
     content: {
-      type: "paragraph",
+      type: 'paragraph',
       content:
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.'
     }
-  });
+  })
 }

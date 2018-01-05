@@ -1,5 +1,5 @@
-import selectClass from './selectClass';
+import selectClass from './selectClass'
 
-export default function(editor, config = {}) {
-  selectClass(editor, config);
+export default function (editor, config = {}) {
+  selectClass(editor, config)
 }

@@ -1,21 +1,20 @@
-import { capitalize, getModel, getView } from "../utils";
+import { capitalize, getModel, getView } from '../utils'
 
 export default (editor, config = {}) => {
-  const domc = editor.DomComponents;
-  let defaultModel = getModel(editor, 'default');
-  let defaultView = getView(editor, 'default');
-  let textModel = getModel(editor, 'text');
-  let textView = getView(editor, 'text');
-  let imgModel = getModel(editor, 'image');
-  let imgView = getView(editor, 'image');
-  let linkModel = getModel(editor, 'link');
-  let linkView = getView(editor, 'link');
+  const domc = editor.DomComponents
+  let defaultModel = getModel(editor, 'default')
+  let defaultView = getView(editor, 'default')
+  let textModel = getModel(editor, 'text')
+  let textView = getView(editor, 'text')
+  let imgModel = getModel(editor, 'image')
+  let imgView = getView(editor, 'image')
+  let linkModel = getModel(editor, 'link')
+  let linkView = getView(editor, 'link')
 
-  const contexts = ["primary", "success", "info", "warning", "danger"];
-  const alignments = ["left", "center", "right", "justify"];
-  const textStyles = ["lowercase", "uppercase", "capitalize"];
-  const imgShapes = ["rounded", "circle", "thumbnail"];
-  const viewports = ['xs', 'sm', 'md', 'lg'];
+  const contexts = ['primary', 'success', 'info', 'warning', 'danger']
+  const alignments = ['left', 'center', 'right', 'justify']
+  const textStyles = ['lowercase', 'uppercase', 'capitalize']
+  const imgShapes = ['rounded', 'circle', 'thumbnail']
 
   domc.addType('default', {
     model: defaultModel.extend({
@@ -31,19 +30,19 @@ export default (editor, config = {}) => {
             ]
           },
           {
-            type: "select-class",
-            label: "Color",
+            type: 'select-class',
+            label: 'Color',
             options: [
               { value: '', name: 'None' },
-              ... ["muted"].concat(contexts).map(context => ({ value: `text-${context}`, name: capitalize(context) })) 
+              ...['muted'].concat(contexts).map(context => ({ value: `text-${context}`, name: capitalize(context) }))
             ]
           },
           {
-            type: "select-class",
-            label: "Background",
+            type: 'select-class',
+            label: 'Background',
             options: [
               { value: '', name: 'none' },
-              ... contexts.map(context => ({ value: `bg-${context}`, name: capitalize(context) })) 
+              ...contexts.map(context => ({ value: `bg-${context}`, name: capitalize(context) }))
             ]
           }
         ])
@@ -52,8 +51,8 @@ export default (editor, config = {}) => {
     view: defaultView
   })
 
-  defaultModel = getModel(editor, 'default');
-  defaultView = getView(editor, 'default');
+  defaultModel = getModel(editor, 'default')
+  defaultView = getView(editor, 'default')
 
   domc.addType('image', {
     model: defaultModel.extend({
@@ -88,14 +87,14 @@ export default (editor, config = {}) => {
             label: 'Shape',
             options: [
               { value: '', name: 'none' },
-              ... imgShapes.map(shape => ({ value: `img-${shape}`, name: capitalize(shape) }))
+              ...imgShapes.map(shape => ({ value: `img-${shape}`, name: capitalize(shape) }))
             ]
           }
         ])
       })
     }, {
-      isComponent(el) {
-        if (el && el.tagName && el.tagName == 'IMG') {
+      isComponent (el) {
+        if (el && el.tagName && el.tagName === 'IMG') {
           return { type: 'image' }
         }
       }
@@ -103,73 +102,73 @@ export default (editor, config = {}) => {
     view: imgView
   })
 
-  domc.addType("text", {
+  domc.addType('text', {
     model: defaultModel.extend({
       defaults: Object.assign({}, textModel.prototype.defaults, {
         traits: defaultModel.prototype.defaults.traits.concat([
           {
-            type: "select-class",
-            label: "Alignment",
+            type: 'select-class',
+            label: 'Alignment',
             options: [
-              ... alignments.map(align => ({ value: `text-${align}`, name: capitalize(align) })),
-              { value: "text-nowrap", name: "No wrap" }
+              ...alignments.map(align => ({ value: `text-${align}`, name: capitalize(align) })),
+              { value: 'text-nowrap', name: 'No wrap' }
             ]
           },
           {
-            type: "select-class",
-            label: "Transform",
+            type: 'select-class',
+            label: 'Transform',
             options: [
-              { value: "", name: "None" },
-              ... textStyles.map(style => ({ value: `text-${style}`, name: capitalize(style) }))
+              { value: '', name: 'None' },
+              ...textStyles.map(style => ({ value: `text-${style}`, name: capitalize(style) }))
             ]
           }
         ])
       })
     }),
     view: textView
-  });
+  })
 
-  textModel = getModel(editor, 'text');
-  textView = getView(editor, 'text');
+  textModel = getModel(editor, 'text')
+  textView = getView(editor, 'text')
 
-  domc.addType("header", {
+  domc.addType('header', {
     model: textModel.extend(
       {
         defaults: Object.assign({}, textModel.prototype.defaults, {
-          "custom-name": "Header",
-          tagName: "h1",
+          'custom-name': 'Header',
+          tagName: 'h1',
           traits: textModel.prototype.defaults.traits.concat([
             {
-              type: "select",
+              type: 'select',
               options: [
-                { value: "h1", name: "One (largest)" },
-                { value: "h2", name: "Two" },
-                { value: "h3", name: "Three" },
-                { value: "h4", name: "Four" },
-                { value: "h5", name: "Five" },
-                { value: "h6", name: "Six (smallest)" }
+                { value: 'h1', name: 'One (largest)' },
+                { value: 'h2', name: 'Two' },
+                { value: 'h3', name: 'Three' },
+                { value: 'h4', name: 'Four' },
+                { value: 'h5', name: 'Five' },
+                { value: 'h6', name: 'Six (smallest)' }
               ],
-              label: "Size",
-              name: "tagName",
+              label: 'Size',
+              name: 'tagName',
               changeProp: 1
             }
           ])
         })
       },
       {
-        isComponent(el) {
+        isComponent (el) {
           if (
             el &&
             el.tagName &&
-            ["H1", "H2", "H3", "H4", "H5", "H6"].includes(el.tagName)
+            ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(el.tagName)
           ) {
-            return { type: "header" };
+            return { type: 'header' }
           }
         }
       }
     ),
     view: textView
-  });
+  })
 
   domc.addType('link', {
     model: linkModel.extend({
@@ -181,19 +180,19 @@ export default (editor, config = {}) => {
             label: 'Id',
             placeholder: 'eg. Text here'
           }].concat(linkModel.prototype.defaults.traits, [
-          { 
-            type: 'select',
-            label: 'Toggles',
-            name: 'data-toggle',
-            options: [
+            {
+              type: 'select',
+              label: 'Toggles',
+              name: 'data-toggle',
+              options: [
               {value: '', name: 'None'},
               {value: 'button', name: 'Self'},
               {value: 'collapse', name: 'Collapse'},
               {value: 'dropdown', name: 'Dropdown'}
-            ],
-            changeProp: 1
-          }
-        ])
+              ],
+              changeProp: 1
+            }
+          ])
       })
     }),
     view: linkView
@@ -221,14 +220,14 @@ export default (editor, config = {}) => {
             options: [
               { value: '', name: 'none' },
               { value: 'list-unstyled', name: 'Unstyled' },
-              { value: 'list-inline', name: 'Inline' },
+              { value: 'list-inline', name: 'Inline' }
             ]
           }
         ])
       })
     }, {
-      isComponent(el) {
-        if (el && el.tagName && (el.tagName == 'UL' || el.tagName == 'OL')) {
+      isComponent (el) {
+        if (el && el.tagName && (el.tagName === 'UL' || el.tagName === 'OL')) {
           return { type: 'list' }
         }
       }
@@ -245,8 +244,8 @@ export default (editor, config = {}) => {
         droppable: true
       })
     }, {
-      isComponent(el) {
-        if (el && el.tagName && el.tagName == 'LI') {
+      isComponent (el) {
+        if (el && el.tagName && el.tagName === 'LI') {
           return { type: 'list-item' }
         }
       }
@@ -266,14 +265,14 @@ export default (editor, config = {}) => {
             label: 'Lead',
             options: [
               { value: '', name: 'No' },
-              { value: 'lead', name: 'Yes'}
+              { value: 'lead', name: 'Yes' }
             ]
           }
         ])
       })
     }, {
-      isComponent(el) {
-        if (el && el.tagName && el.tagName == 'P') {
+      isComponent (el) {
+        if (el && el.tagName && el.tagName === 'P') {
           return { type: 'paragraph' }
         }
       }
