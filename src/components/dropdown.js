@@ -100,7 +100,7 @@ export default (editor, config = {}) => {
     model: defaultModel.extend({
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
         'custom-name': 'Dropdown Menu',
-        draggable: '.dropdown',
+        draggable: '.dropdown, .btn-group',
         droppable: 'li'
       })
     }, {

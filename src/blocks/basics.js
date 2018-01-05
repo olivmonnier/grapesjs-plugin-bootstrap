@@ -4,6 +4,44 @@ export default (editor, config = {}) => {
   const { basics } = category
   const addBlock = (name = '', attr = {}) => (blocks.indexOf(name) >= 0) ? bm.add(name, attr) : null
 
+  // Address
+  addBlock('address', {
+    label: 'Address',
+    category: basics,
+    attributes: { class: 'fa fa-location-arrow' },
+    content: `
+      <address>
+        <strong>Twitter, Inc.</strong><br>
+        1355 Market Street, Suite 900<br>
+        San Francisco, CA 94103<br>
+        Phone: (123) 456-7890
+      </address>
+    `
+  })
+
+  addBlock('blockquote', {
+    label: 'Blockquote',
+    category: basics,
+    attributes: { class: 'fa fa-quote-left' },
+    content: `
+      <blockquote>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+      </blockquote>
+    `
+  })
+
+  // Button
+  addBlock('button', {
+    label: 'Button',
+    category: basics,
+    attributes: { class: 'fa fa-link' },
+    content: {
+      type: 'button',
+      content: 'Button'
+    }
+  })
+
   // Header
   addBlock('header', {
     label: 'Header',

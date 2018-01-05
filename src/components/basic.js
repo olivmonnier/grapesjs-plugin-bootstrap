@@ -15,6 +15,11 @@ export default (editor, config = {}) => {
   const alignments = ['left', 'center', 'right', 'justify']
   const textStyles = ['lowercase', 'uppercase', 'capitalize']
   const imgShapes = ['rounded', 'circle', 'thumbnail']
+  const sizes = [
+    ['lg', 'large'],
+    ['sm', 'small'],
+    ['xs', 'extra small']
+  ]
 
   domc.addType('default', {
     model: defaultModel.extend({
@@ -41,7 +46,7 @@ export default (editor, config = {}) => {
             type: 'select-class',
             label: 'Background',
             options: [
-              { value: '', name: 'none' },
+              { value: '', name: 'None' },
               ...contexts.map(context => ({ value: `bg-${context}`, name: capitalize(context) }))
             ]
           }
@@ -198,6 +203,54 @@ export default (editor, config = {}) => {
     view: linkView
   })
 
+  linkModel = getModel(editor, 'link')
+  linkView = getView(editor, 'link')
+
+  domc.addType('button', {
+    model: linkModel.extend({
+      defaults: Object.assign({}, linkModel.prototype.defaults, {
+        'custom-name': 'Button',
+        attributes: {
+          role: 'button'
+        },
+        classes: ['btn'],
+        traits: linkModel.prototype.defaults.traits.concat([
+          {
+            type: 'select-class',
+            label: 'Context',
+            options: [
+              { value: 'btn-default', name: 'Default' },
+              ...contexts.map(context => ({ value: `btn-${context}`, name: capitalize(context) }))
+            ]
+          },
+          {
+            type: 'select-class',
+            label: 'Size',
+            options: [
+              { value: '', name: 'Default' },
+              ...sizes.map(size => ({ value: `btn-${size[0]}`, name: capitalize(size[1]) }))
+            ]
+          },
+          {
+            type: 'select-class',
+            label: 'Width',
+            options: [
+              { value: '', name: 'Inline' },
+              { value: 'btn-block', name: 'Block' }
+            ]
+          }
+        ])
+      }, {
+        isComponent (el) {
+          if (el && el.classList && el.classList.contains('btn')) {
+            return { type: 'button' }
+          }
+        }
+      })
+    }),
+    view: linkView
+  })
+
   domc.addType('list', {
     model: defaultModel.extend({
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
@@ -278,5 +331,30 @@ export default (editor, config = {}) => {
       }
     }),
     view: textView
+  })
+
+  domc.addType('blockquote', {
+    model: defaultModel.extend({
+      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+        tagName: 'blockquote',
+        traits: defaultModel.prototype.defaults.traits.concat([
+          {
+            type: 'select-class',
+            label: 'Reversed',
+            options: [
+              { value: '', name: 'No' },
+              { value: 'blockquote-reverse', name: 'Yes' }
+            ]
+          }
+        ])
+      })
+    }, {
+      isComponent (el) {
+        if (el && el.tagName && el.tagName === 'BLOCKQUOTE') {
+          return { type: 'blockquote' }
+        }
+      }
+    }),
+    view: defaultView
   })
 }
