@@ -110,6 +110,7 @@ export default (editor, config = {}) => {
   domc.addType('text', {
     model: defaultModel.extend({
       defaults: Object.assign({}, textModel.prototype.defaults, {
+        droppable: true,
         traits: defaultModel.prototype.defaults.traits.concat([
           {
             type: 'select-class',
@@ -293,8 +294,7 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textModel.prototype.defaults, {
         'custom-name': 'Item',
         tagName: 'li',
-        draggable: 'ul, ol',
-        droppable: true
+        draggable: 'ul, ol'
       })
     }, {
       isComponent (el) {
@@ -311,7 +311,6 @@ export default (editor, config = {}) => {
       defaults: Object.assign({}, textModel.prototype.defaults, {
         'custom-name': 'Paragraph',
         tagName: 'p',
-        droppable: true,
         traits: textModel.prototype.defaults.traits.concat([
           {
             type: 'select-class',
