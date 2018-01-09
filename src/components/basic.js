@@ -60,15 +60,13 @@ export default (editor, config = {}) => {
   defaultView = getView(editor, 'default')
 
   domc.addType('image', {
-    model: defaultModel.extend({
+    model: imgModel.extend({
       defaults: Object.assign({}, imgModel.prototype.defaults, {
         'custom-name': 'Image',
-        tagName: 'img',
-        resizable: 1,
         attributes: {
           src: 'https://dummyimage.com/450x250/999/222'
         },
-        traits: defaultModel.prototype.defaults.traits.concat([
+        traits: [
           {
             type: 'text',
             label: 'Source (URL)',
@@ -95,7 +93,7 @@ export default (editor, config = {}) => {
               ...imgShapes.map(shape => ({ value: `img-${shape}`, name: capitalize(shape) }))
             ]
           }
-        ])
+        ]
       })
     }, {
       isComponent (el) {
