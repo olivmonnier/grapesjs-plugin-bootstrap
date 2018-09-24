@@ -5,23 +5,23 @@ export default (editor, config = {}) => {
   const defaultView = defaultType.view
   const cols = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
-  domc.addType('row', {
-    model: defaultModel.extend({
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
-        'custom-name': 'Row',
-        tagName: 'div',
-        draggable: '.container, .container-fluid',
-        droppable: '[class*="col-xs"], [class*="col-sm"], [class*="col-md"], [class*="col-lg"]'
-      })
-    }, {
-      isComponent (el) {
-        if (el && el.classList && el.classList.contains('row')) {
-          return { type: 'row' }
-        }
-      }
-    }),
-    view: defaultView
-  })
+  // domc.addType('row', {
+  //   model: defaultModel.extend({
+  //     defaults: Object.assign({}, defaultModel.prototype.defaults, {
+  //       'custom-name': 'Row',
+  //       tagName: 'div',
+  //       draggable: '.container, .container-fluid',
+  //       droppable: '[class*="col-xs"], [class*="col-sm"], [class*="col-md"], [class*="col-lg"]'
+  //     })
+  //   }, {
+  //     isComponent (el) {
+  //       if (el && el.classList && el.classList.contains('row')) {
+  //         return { type: 'row' }
+  //       }
+  //     }
+  //   }),
+  //   view: defaultView
+  // })
 
   domc.addType('column', {
     model: defaultModel.extend({

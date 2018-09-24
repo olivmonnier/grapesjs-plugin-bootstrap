@@ -95,4 +95,21 @@ export default (editor, config = {}) => {
         'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.'
     }
   })
+
+  addBlock('table', {
+    label: 'Table',
+    category: basics,
+    content: `
+      <table class="table">
+        <tr>
+          <td>Cell 1</td>
+          <td>Cell 2</td>
+        </tr>
+        <tr>
+          <td>Cell 3</td>
+          <td>Cell 4</td>
+        </tr>
+      </table>
+    `
+  })
 }

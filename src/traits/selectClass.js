@@ -25,7 +25,7 @@ export default function (editor, config = {}) {
           this.target.addClass(valueN[i])
         }
       }
-      this.target.em.trigger('change:selectedComponent')
+      this.target.em.trigger('component:toggled')
     },
 
     getInputEl: function () {
