@@ -49,7 +49,24 @@ export default (editor, config = {}) => {
             ]
           }
         ])
-      })
+      }),
+      tagUpdated() { 
+        const trt = new Traits([], this.opt);
+        const tagName = this.get('tagName')
+        const traits = this.get('traits')
+
+        trt.setTarget(this);
+        
+        if (tagName === 'button') {
+          const traitsFiltered = traits.filter(trait => trait.get('name') !== 'href')
+
+          this.set('traits', traitsFiltered)
+        } else {
+          trt.add(['href'])
+        }
+        
+        linkModel.prototype.tagUpdated.apply(this, arguments)
+      }
     }, {
       isComponent (el) {
         if (el && el.classList && el.classList.contains('btn')) {
